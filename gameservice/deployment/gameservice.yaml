@@ -1,0 +1,35 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: gameservice-deployment
+  labels:
+    app: gameservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gameservice
+  template:
+    metadata:
+      labels:
+        app: gameservice
+    spec:
+      imagePullSecrets:
+      - name: aws-ecr
+      containers:
+      - name: gameservice
+        image: 859071865440.dkr.ecr.us-west-1.amazonaws.com/gameservice:dev
+        ports:
+          - protocol: TCP
+            containerPort: 80
+            name: http
+          - protocol: TCP
+            containerPort: 443
+            name: ssl
+      tolerations:
+      - effect: NoExecute
+        key: type
+        operator: Equal
+        value: services

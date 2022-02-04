@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: xbox-sso
+  namespace: services
+spec:
+  selector:
+    app: xbox-sso
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: xbox-sso
+  name: xbox-sso
+  namespace: services
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: xbox-sso
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: xbox-sso
+        name: xbox-sso
+    spec:
+      containers:
+        - image: 859071865440.dkr.ecr.us-west-1.amazonaws.com/gameservice:dev
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+          # livenessProbe:
+          #   failureThreshold: 3
+          #   httpGet:
+          #     path: "/health"
+          #     port: 80
+          #     scheme: HTTP
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 10
+          #   successThreshold: 1
+          #   timeoutSeconds: 2
+          # readinessProbe:
+          #   httpGet:
+          #     path: "/health"
+          #     port: 80
+          #     scheme: HTTP
+          #   initialDelaySeconds: 20
+          #   periodSeconds: 5
+          name: xbox-sso
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          ports:
+            - containerPort: 80
+              name: web
+              protocol: TCP
+      tolerations:
+      - effect: NoExecute
+        key: type
+        operator: Equal
+        value: "services"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

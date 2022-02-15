@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: xbox-sso
+  namespace: services
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - host: dev.rsgameservices.com
+    http:
+      paths:
+      - path: /xbox-sso(/|$)(.*)
+        backend:
+          serviceName: xbox-sso
+          servicePort: 80

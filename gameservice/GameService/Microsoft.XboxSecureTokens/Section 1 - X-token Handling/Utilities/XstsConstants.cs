@@ -19,7 +19,7 @@ namespace Microsoft.XboxSecureTokens
         //  Change this value so that it identifies your
         //  service or title from other servers when
         //  making calls to XSTS and Xbox Live services
-        public const string ServiceName = "GameServiceSamplev1.8";
+        public const string ServiceName = "RainbowGameService";
         public const string CacheKeyFormat = "{0}:{1}:{2}";
         public const string BPCertThumprintKey = "BP_CERT_THUMBPRINT";
         public const string RPCertThumprintKey = "RP_CERT_THUMBPRINT";

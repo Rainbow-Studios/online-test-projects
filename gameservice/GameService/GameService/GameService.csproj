@@ -24,6 +24,7 @@
     <UserSecretsId>aspnet-GameService-4148ace1-6c3b-4497-8657-975c46ab0fb2</UserSecretsId>
     <Version>1.5.0</Version>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
     
   <ItemGroup>

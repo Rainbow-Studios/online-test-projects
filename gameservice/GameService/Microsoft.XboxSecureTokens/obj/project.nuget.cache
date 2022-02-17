@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lu8gOXO77+8gyhpeK7yU6nXZ+ubp7lGnD/5m7EYWNjFUPV7CGF3AaKaMajQBFIzze/v7Q1P8Efcc9IAXnnG3fQ==",
+  "dgSpecHash": "tNsEZpPbGm3Rc4O9T+Y1lKGvW7gVUnI6lI+zesLqH+LztaN8r9OZpcrvci/cA9RUfsKfEL4zeyYrD1iFvFMLjg==",
   "success": true,
-  "projectFilePath": "C:\\rsp4\\GdkSamples\\GDKSamples\\Live\\GameService\\Microsoft.XboxSecureTokens\\Microsoft.XboxSecureTokens.csproj",
+  "projectFilePath": "C:\\GitShit\\Rainbow-Studios\\online-test-projects\\gameservice\\GameService\\Microsoft.XboxSecureTokens\\Microsoft.XboxSecureTokens.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\smyers\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\smyers\\.nuget\\packages\\jose-jwt\\3.1.1\\jose-jwt.3.1.1.nupkg.sha512",

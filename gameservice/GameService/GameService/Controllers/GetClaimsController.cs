@@ -31,6 +31,7 @@ namespace GameService.Controllers
             //  We initialize this here instead of in the XstsControllerBase so that we can specify the
             //  specific name of each service to help sort out the logs
             mLogger = Logger;
+            
         }
 
         // GET: api/<controller>

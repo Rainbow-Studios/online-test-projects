@@ -36,7 +36,7 @@ spec:
         name: xbox-sso
     spec:
       containers:
-        - image: 859071865440.dkr.ecr.us-west-1.amazonaws.com/gameservice:dev.15
+        - image: 859071865440.dkr.ecr.us-west-1.amazonaws.com/gameservice:dev.16
           env:
             - name: RP_CERT_THUMBPRINT
               value: "3f5fa5808a9582c2071d53059f07a38f34f75e21"
@@ -69,7 +69,7 @@ spec:
           #   periodSeconds: 5
           name: xbox-sso
           resources: {}
-          terminationMessagePath: /dev/termination-log
+          terminationMessagePath: /staging/termination-log
           ports:
             - containerPort: 80
               name: web

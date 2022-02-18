@@ -1,0 +1,5 @@
+
+gameservice/GameService/certs/RP_Cert.cer
+gameservice/GameService/certs/RP_Cert_Chain.p7b
+gameservice/GameService/certs/RP_Full_Cert.pfx
+gameservice/GameService/certs/RP_Private_Key.pvk

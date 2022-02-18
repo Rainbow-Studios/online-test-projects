@@ -16,8 +16,14 @@ RUN dotnet build "GameService.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "GameService.csproj" -c Release -o /app/publish
+COPY ./certs/RP_Full_Cert.pfx /app/publish/RP_Full_Cert.pfx
+COPY ./certs/RP_Cert.cer /app/publish/RP_Cert.cer
+
 
 FROM base AS final
+
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+
 ENTRYPOINT ["dotnet", "GameService.dll"]

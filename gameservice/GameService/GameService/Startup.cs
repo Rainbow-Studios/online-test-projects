@@ -21,6 +21,7 @@ using System;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Security.Cryptography.X509Certificates;
 
 //  SECTION 1 - user-secret ID note
 //  If this is running locally on our development PC
@@ -108,6 +109,61 @@ namespace GameService
             mLogger = logger;
             mCv = new CorrelationVector();
             mLogger.StartupInfo(mCv.Value, "Starting Initialization of server");
+
+            //  can we log the certs we have?  
+            //  if we have certs and a cert store, can we just add our pfx?
+            //  -------------------------------------------------------------------
+
+            //string certPfxPath = @"RP_Full_Cert.pfx";
+            string certCerPath = @"RP_Cert.cer";
+            string certPass = "RainbowGameServiceKey";
+
+            X509Store certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            certStore.Open(OpenFlags.ReadWrite);
+
+            X509Certificate2 certificate = new X509Certificate2(certCerPath);
+
+              //Create a collection and add two of the certificates.
+            X509Certificate2Collection collection = new X509Certificate2Collection();
+            collection.Add(certificate);
+
+            //Add certificates to the store.
+            certStore.Add(certificate);
+            certStore.AddRange(collection);
+
+           
+   
+
+            // Create a collection object and populate it using the PFX file
+           //   X509Certificate2Collection collection = new X509Certificate2Collection();
+           //   collection.Import(certPath, certPass, X509KeyStorageFlags.PersistKeySet);
+           //       
+           //   //  Then you can iterate over the collection:
+           //  
+           //   foreach (X509Certificate2 cert in collection)
+           //   {
+           //       mLogger.StartupInfo("Subject is: '{0}'", cert.Subject);
+           //       mLogger.StartupInfo("Issuer is:  '{0}'", cert.Issuer);
+           //  
+           //       // Import the certificates into X509Store objects
+           //   }
+           //  
+           //  
+           //   certStore.Open(OpenFlags.ReadOnly);
+           //  
+           //   X509Certificate2Collection storecollection = (X509Certificate2Collection)certStore.Certificates;
+           //   mLogger.StartupInfo("Store name: {0}", certStore.Name);
+            
+            //  mLogger.StartupInfo("Store location: {0}", certStore.Location);
+           //   foreach (X509Certificate2 x509 in storecollection)
+           //   {
+           //       mLogger.StartupInfo("certificate name: {0}", x509.Subject);
+           //   }
+
+
+            //  --------------------------------------------------------------------
+
+
 
             //  First handle any incoming calls and re-direct / forward as needed depending on server platform
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
